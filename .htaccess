@@ -1,0 +1,5 @@
+RewriteEngine On
+DirectoryIndex landing_page.php
+
+# Route requests to room management to room_index.php
+RewriteRule ^room_index/?$ room_index.php [L]
