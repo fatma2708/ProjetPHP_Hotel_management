@@ -1,6 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/hotelmanagement/models/ViewRoom.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/hotelmanagement/config/database.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/hotelmanagement/db.php';
 
 class ViewRoomsController {
     public function __construct() {
@@ -23,7 +23,7 @@ class ViewRoomsController {
                 $bookingHistory = ViewRoom::getBookingHistoryByRoomId($roomId);
             }
 
-            include $_SERVER['DOCUMENT_ROOT'] . '/hotelmanagement/views/room_list.php';
+            include $_SERVER['DOCUMENT_ROOT'] . '/hotelmanagement/views/viewroomlist.php';
         } catch (Exception $e) {
             echo "Erreur: " . $e->getMessage();
         }

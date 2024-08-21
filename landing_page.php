@@ -43,9 +43,7 @@
                       <ul class="list-unstyled menu">
                         <li><a href="index.html">Acceuil</a></li>
                         <li><a href="login.php">Se connecter</a></li>
-                        <li><a href="user_index.php">Manage Users</a></li>
-                        <li><a href="room_index.php">Manage Rooms</a></li>
-                        <li><a href="booking_index.php">Manage Bookings</a></li>
+
                 
                       </ul>
                     </div>
