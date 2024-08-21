@@ -1,69 +1,88 @@
+<?php
+// Check if the form has been submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $checkInDate = $_POST["check_in"];
+  $checkOutDate = $_POST["check_out"];
+
+  // Check if the check-out date is after the check-in date
+  if (strtotime($checkOutDate) <= strtotime($checkInDate)) {
+    $error = "Check-out date must be after check-in date";
+  } else {
+    // Process the booking form data
+    // ...
+  }
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Booking Form</title>
     <style>
-  /* Add a cute font to the table */
-  table {
-    font-family: "Lato", sans-serif;
-    color: black;
-}
+      /* Add a cute font to the table */
+      table {
+        font-family: "Lato", sans-serif;
+        color: black;
+      }
 
-  /* Make the table headers cute */
-  th {
-    background-color: rgb(57, 5, 57);
-    color: #fff;
-    padding: 10px;
-    border-radius: 10px;
-  }
+      /* Make the table headers cute */
+      th {
+        background-color: rgb(57, 5, 57);
+        color: #fff;
+        padding: 10px;
+        border-radius: 10px;
+      }
 
-  /* Make the table rows cute */
-  tr {
-    background-color:white;
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-  }
+      /* Make the table rows cute */
+      tr {
+        background-color:white;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+      }
 
-  /* Make the table data cute */
-  td {
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-  }
+      /* Make the table data cute */
+      td {
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+      }
 
-  /* Add a cute hover effect to the table rows */
-  tr:hover {
-    background-color: #ffe6cc;
-  }
+      /* Add a cute hover effect to the table rows */
+      tr:hover {
+        background-color: #ffe6cc;
+      }
 
-  /* Make the delete button cute */
-  .delete-button {
-    background-color: #ff0000;
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+      /* Make the delete button cute */
+      .delete-button {
+        background-color: #ff0000;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
 
-  /* Make the edit button cute */
-  .edit-button {
-    background-color: rgb(57, 5, 57);
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  body {
-      font-family: "Lato", sans-serif;
-      color: #ccc;
-      background-image: url(assets/img/hero_2.jpg);
+      /* Make the edit button cute */
+      .edit-button {
+        background-color: rgb(57, 5, 57);
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      body {
+          font-family: "Lato", sans-serif;
+          color: #ccc;
+          background-image: url(assets/img/hero_2.jpg);
+          
+      }
       
-  }
-  
-  
-</style>
+    </style>
 </head>
 <body>
     <h1><?= isset($booking) ? 'Edit Booking' : 'Add Booking' ?></h1>
+
+    <?php if (isset($error)): ?>
+      <p style="color: red;"><?= $error ?></p>
+    <?php endif; ?>
 
     <form method="POST" action="">
         <label for="user_id">Client:</label>

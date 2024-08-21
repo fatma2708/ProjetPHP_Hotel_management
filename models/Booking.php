@@ -76,5 +76,46 @@ class Booking {
         $stmt->execute([$room_id]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public static function getTotalBookings() {
+        global $pdo;
+        $stmt = $pdo->query("SELECT COUNT(*) AS total FROM bookings");
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['total'];
+    }
+
+    public static function getTotalRevenue() {
+        global $pdo;
+        $stmt = $pdo->query("SELECT SUM(DATEDIFF(check_out, check_in) * rooms.price) AS total_revenue
+                             FROM bookings
+                             JOIN rooms ON bookings.room_id = rooms.id");
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['total_revenue'];
+    }
+
+    public static function getBookingsPerRoom() {
+        global $pdo;
+        $stmt = $pdo->query("SELECT rooms.room_number, COUNT(bookings.id) AS total_bookings
+                             FROM bookings
+                             JOIN rooms ON bookings.room_id = rooms.id
+                             GROUP BY rooms.room_number");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function getBookingsPerUser() {
+        global $pdo;
+        $stmt = $pdo->query("SELECT users.name, COUNT(bookings.id) AS total_bookings
+                             FROM bookings
+                             JOIN users ON bookings.user_id = users.id
+                             GROUP BY users.name");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public static function getAverageBookingDuration() {
+        global $pdo;
+        $stmt = $pdo->query("SELECT AVG(DATEDIFF(check_out, check_in)) AS average_duration
+                             FROM bookings");
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['average_duration'];
+    }
+    
 }
 ?>

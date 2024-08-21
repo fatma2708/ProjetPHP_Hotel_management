@@ -12,7 +12,6 @@ if (isset($_GET['action'])) {
             if (isset($_GET['id'])) {
                 $controller->edit($_GET['id']);
             } else {
-                // Handle missing ID
                 echo "Booking ID is required.";
             }
             break;
@@ -20,9 +19,11 @@ if (isset($_GET['action'])) {
             if (isset($_GET['id'])) {
                 $controller->delete($_GET['id']);
             } else {
-                // Handle missing ID
                 echo "Booking ID is required.";
             }
+            break;
+        case 'statistics':
+            $controller->statistics();
             break;
         default:
             $controller->index();

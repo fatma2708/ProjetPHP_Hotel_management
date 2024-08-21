@@ -27,7 +27,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] != 'admin') {
         <div class="container-fluid">
             <div class="row">
                 <div class="col-4 site-logo" data-aos="fade">
-                    <a href="landing_page.php"><em>Hotelia</em></a>
+                    <a href="admin_dashboard.php"><em>Hotelia</em></a>
                 </div>
                 <div class="col-8">
                     <div class="site-menu-toggle js-site-menu-toggle" data-aos="fade">
@@ -41,7 +41,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] != 'admin') {
                                 <div class="row full-height align-items-center">
                                     <div class="col-md-6">
                                         <ul class="list-unstyled menu">
-                                            <li><a href="index.html">Home</a></li>
+                                            <li><a href="admin_dashboard.php">Home</a></li>
                                             <li><a href="login.php">Logout</a></li>
                                         </ul>
                                     </div>
